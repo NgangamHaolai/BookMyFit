@@ -60,7 +60,7 @@ import axios from 'axios';
       }
       try
       {
-          const response = await axios.post("http://localhost:3000/api/timeSlot", { slot: newSlot });
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/timeSlot`, { slot: newSlot });
           // alert(response.data.message);
           console.log(response.data.message);
           retrieveTimeSlots();
@@ -86,7 +86,7 @@ import axios from 'axios';
   {
       e.preventDefault();
       let token = localStorage.getItem('adminToken');
-      const response = await axios.delete(`http://localhost:3000/api/timeSlot/${slotId}`,
+      const response = await axios.delete(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/timeSlot/${slotId}`,
         { headers: { 'Authorization': `Bearer ${token}`}}
       );
       console.log(response.data);
@@ -99,14 +99,14 @@ import axios from 'axios';
       const finalBooking = maxBooking === null ? defaultBooking : maxBooking;
       const finalWaiting = maxWaiting === null ? defaultWaiting : maxWaiting;
       console.log("Final", finalBooking, finalWaiting);
-      const response = await axios.put("http://localhost:3000/api/timeSlot", { maxBooking: finalBooking, maxWaiting: finalWaiting });
+      const response = await axios.put(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/timeSlot`, { maxBooking: finalBooking, maxWaiting: finalWaiting });
       console.log(response.data.message);
       setSuccess(response.data.message);
 
   }
   async function retrieveTimeSlots()
   {
-      const response = await axios.get("http://localhost:3000/api/timeSlot");
+      const response = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/timeSlot`);
       const slotsRetrieved = response.data;
 
       setDefaultBooking(slotsRetrieved[0].maxBookingCapacity)

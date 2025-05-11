@@ -34,7 +34,7 @@ function AdminSettings()
       const token = localStorage.getItem('adminToken');
       try
       {
-          const response = await axios.post('http://localhost:3000/api/resetAdminPassword', 
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/resetAdminPassword`, 
               {oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword},
               {headers: {'Authorization' : `Bearer ${token}`}}
           );

@@ -38,7 +38,7 @@ function MembershipManagement()
     {
       console.log('sdf');
       
-      const result = await axios.get("http://localhost:3000/api/adminDashboard/membersData");
+      const result = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/adminDashboard/membersData`);
       console.log('fds',result.data);
       setMembers(result.data.combineBookingAndUserData);
       

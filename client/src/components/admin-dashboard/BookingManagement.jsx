@@ -42,7 +42,7 @@ function BookingManagement() {
   {
     try
     {
-      const response = await axios.get('http://localhost:3000/api/adminDashboard/membersData');
+      const response = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/adminDashboard/membersData`);
       console.log(response.data);
       setBookings(response.data.combineBookingAndUserData );
     }
@@ -58,7 +58,7 @@ function BookingManagement() {
     {
       console.log(toDeleteSlot);
       setBookingToDelete(toDeleteSlot);
-      const response = await axios.delete(`http://localhost:3000/api/adminDashboard/membersData/deleteSlot/${toDeleteSlot}`);
+      const response = await axios.delete(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/adminDashboard/membersData/deleteSlot/${toDeleteSlot}`);
       console.log(response.data.message);
     }
     catch(err)

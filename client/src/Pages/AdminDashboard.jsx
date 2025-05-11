@@ -36,7 +36,7 @@ function AdminDashboard()
   {
     try
     {
-      const response = await axios.get('http://localhost:3000/api/adminDashboard/membersData');
+      const response = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/adminDashboard/membersData`);
       
       setTotalMembers(response.data.totalMembers);
       setTotalBookings(response.data.totalBookings);

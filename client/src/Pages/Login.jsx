@@ -18,7 +18,7 @@ function Login()
     e.preventDefault();
     try
     {            
-        const result = await axios.post("http://localhost:3000/api/login", 
+        const result = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/login`, 
             {email: userEmail, password: userPassword},
         );
         const {token} = result.data;

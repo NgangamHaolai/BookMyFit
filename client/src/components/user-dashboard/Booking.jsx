@@ -23,7 +23,7 @@ export default function Booking()
     {
         try
         {
-            const response = await axios.get("http://localhost:3000/api/booking/retrieveTimeSlots");
+            const response = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/retrieveTimeSlots`);
             const slotsRetrieved = response.data;
             // console.log(selectedDate);
             console.log("RetrievedSlots:",slotsRetrieved);
@@ -77,7 +77,7 @@ export default function Booking()
       // reScheduleSlots();
       try
       {                                                                                 // selectedDate.toISOString().split("T")[0] // not suitable for local-time-zone
-          const response = await axios.get(`http://localhost:3000/api/booking/availability?date=${selectedDate.toLocaleDateString()}&slotID=${slotID}&slot=${slot}`);
+          const response = await axios.get(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/availability?date=${selectedDate.toLocaleDateString()}&slotID=${slotID}&slot=${slot}`);
           setAvailability(response.data.status);
       }
       catch(err)
@@ -124,7 +124,7 @@ export default function Booking()
           }
           // console.log("selectdSlot:", selectedSlot);
           // console.log("SelectedDate:", selectedDate.toISOString().split("T")[0]);
-          const response = await axios.post(`http://localhost:3000/api/Booking`,
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/Booking`,
                           { slotID: selectedSlot.slotID, slot: selectedSlot.slot, bookingDate: selectedDate.toLocaleDateString() },
                           { headers: {'Authorization' : `Bearer ${token}`} });
           // alert(response.data.message);
@@ -165,7 +165,7 @@ export default function Booking()
       const token = localStorage.getItem('userToken');
       try
       {
-          const response = await axios.post("http://localhost:3000/api/booking/retrieveBookedSlots",
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/retrieveBookedSlots`,
               { date: date.toLocaleDateString() },
               { headers: { "Authorization" : `Bearer ${token}` }});
           console.log("Ret Slot",response.data);
@@ -182,7 +182,7 @@ export default function Booking()
       try
       {
           const token = localStorage.getItem('userToken');
-          const response = await axios.post("http://localhost:3000/api/booking/retrieveWaitingSlots",
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/retrieveWaitingSlots`,
               { date: date.toLocaleDateString() },
               { headers: { 'Authorization' : `Bearer ${token}`} } );
           console.log("Ret Wait Slots",response.data);
@@ -201,7 +201,7 @@ export default function Booking()
       const token = localStorage.getItem('userToken');
       try
       {
-          const response = await axios.post(`http://localhost:3000/api/booking/deleteBookedSlot/`,
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/deleteBookedSlot/`,
               { date: selectedDate.toLocaleDateString(), slotID: slotToDelete },
               { headers: {"Authorization" : `Bearer ${token}`} }
           );
@@ -220,7 +220,7 @@ export default function Booking()
       const token = localStorage.getItem('userToken');
       try
       {
-          const response = await axios.post('http://localhost:3000/api/booking/deleteWaitingSlot',
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/deleteWaitingSlot`,
               { date: selectedDate.toLocaleDateString(), slotID: slotToDelete },
               { headers: {"Authorization" : `Bearer ${token}`} }
           );
@@ -239,7 +239,7 @@ export default function Booking()
       try
       {
           const token = localStorage.getItem('userToken');
-          const response = await axios.post("http://localhost:3000/api/booking/reScheduleSlots",
+          const response = await axios.post(`${import.meta.env.VITE_BOOKMYFIT_URL_SERVER}/api/booking/reScheduleSlots`,
               { date: selectedDate.toLocaleDateString() },
               { headers: { 'Authorization' : `Bearer ${token}` }});
           console.log(response.data);
