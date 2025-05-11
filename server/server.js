@@ -15,8 +15,8 @@ import userDashboardRoute from './routes/userDashboardRoute.js';
 
 const port = process.env.PORT || 3000;
 const app = express();
-connectDB();
 dotenv.config();
+connectDB();
 
 // app.use(express.static("public"));
 // app.use(cors());
