@@ -19,9 +19,15 @@ connectDB();
 dotenv.config();
 
 // app.use(express.static("public"));
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use(cors({
+    origin: [process.env.BOOKMYFIT_URL, 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT'],
+    credentials: true,
+}));
 
 app.use("/api", login);
 app.use('/api', register);
