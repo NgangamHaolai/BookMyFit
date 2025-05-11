@@ -13,9 +13,9 @@ import timeSlot from "./routes/slotManagementRoute.js";
 import adminDashboard from './routes/adminDashboardRoute.js';
 import userDashboardRoute from './routes/userDashboardRoute.js';
 
+dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
-dotenv.config();
 connectDB();
 
 // app.use(express.static("public"));
